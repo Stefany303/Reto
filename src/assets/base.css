@@ -1,0 +1,73 @@
+:root {
+  --vt-c-white: #eeeeec; /* Snow White */
+  --vt-c-white-soft: #f8f8f8; /* Color de fondo claro */
+  --vt-c-white-mute: #f2f2f2; /* Otro color de fondo claro */
+
+  --vt-c-black: #181818; /* Color de fondo oscuro */
+  --vt-c-black-soft: #222222; /* Otro color de fondo oscuro */
+  --vt-c-black-mute: #282828; /* Otro color de fondo oscuro */
+
+  --vt-c-indigo: #2c3e50;
+
+  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
+  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
+  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
+  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+
+  --vt-c-text-light-1: #ddd3c9; /* Perfectly Pale */
+  --vt-c-text-light-2: #88ac87; /* Basil */
+  --vt-c-text-dark-1: #cacdcc; /* Northern Droplet */
+  --vt-c-text-dark-2: #5b5c5f; /* Poppy Seed */
+}
+
+/* semantic color variables for this project */
+:root {
+  --color-background: var(--vt-c-white);
+  --color-background-soft: var(--vt-c-white-soft);
+  --color-background-mute: var(--vt-c-white-mute);
+
+  --color-border: var(--vt-c-divider-light-2);
+  --color-border-hover: var(--vt-c-divider-light-1);
+
+  --color-heading: var(--vt-c-text-light-1);
+  --color-text: var(--vt-c-text-dark-2);
+
+  --section-gap: 160px;
+}
+
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: bold;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 1.2rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

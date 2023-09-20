@@ -43,7 +43,7 @@ const selectedFileName = ref('');
 const isLoading = ref(false);
 
 
-const handleFileUpload = (event) => {
+const handleFileUpload = (event: { target: any; }) => {
   const input = event.target;
   const file = input.files?.[0];
 
@@ -54,7 +54,7 @@ const handleFileUpload = (event) => {
       dynamicTyping: true,
       complete(results) {
         // Asigna manualmente los nombres de columna y aplica formatPhoneNumbers
-        const formattedData = results.data.map((item) => ({
+        const formattedData = results.data.map((item: any) => ({
           name: item[0],    
           phone: item[1],   
           email: item[2],   
@@ -70,10 +70,10 @@ const handleFileUpload = (event) => {
   }
 };
 
-const formatPhoneNumbers = (data) => {
+const formatPhoneNumbers = (data:any) => {
   return data
-    .filter((item) => item.phone) // Filtrar solo los elementos con número de teléfono
-    .map((item) => {
+    .filter((item:any) => item.phone) // Filtrar solo los elementos con número de teléfono
+    .map((item:any) => {
       let phoneNumber = item.phone.toString();
 
       const zerosToAdd = Math.max(0, 10 - phoneNumber.length);
@@ -99,7 +99,7 @@ const formatPhoneNumbers = (data) => {
 
 
   
-const postDataToAPI = async (data) => {
+const postDataToAPI = async (data:any) => {
   try {
     if (!data || data.length === 0) {
       console.error('No hay datos para enviar al endpoint');
@@ -107,7 +107,7 @@ const postDataToAPI = async (data) => {
       return;
     }
     isLoading.value = true;
-    const sendRequest = async (itemIndex) => {
+    const sendRequest = async (itemIndex:any) => {
       if (itemIndex >= data.length) {
         postDataMessage.value = 'Datos CSV enviados con éxito al endpoint';
         isLoading.value = false;

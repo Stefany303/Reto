@@ -1,40 +1,35 @@
-# lista
+Aplicación Vue para Visualizar y Enviar Archivos CSV
+    Esta es una aplicación Vue.js que te permite importar archivos CSV, visualizar los datos y luego enviarlos a un endpoint de una API. La aplicación proporciona una interfaz intuitiva para cargar archivos, explorar los datos y realizar     acciones en ellos.
 
-This template should help get you started developing with Vue 3 in Vite.
+Demo en Vivo
+    Puedes ver una demostración en vivo de la aplicación aquí: https://reto-phi.vercel.app/.
 
-## Recommended IDE Setup
+Funcionalidades Principales
+    * Importación de Archivos CSV: La aplicación permite a los usuarios cargar archivos CSV desde su dispositivo.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+    * Visualización de Datos: Una vez que se carga un archivo CSV, la aplicación muestra los datos en una interfaz fácil de usar. Puedes explorar y analizar los datos de forma interactiva.
 
-## Type Support for `.vue` Imports in TS
+    * Envío de Datos a un Endpoint de la API: Después de revisar los datos, puedes enviarlos a un endpoint de la API utilizando una función integrada en la aplicación.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+Cómo Usar la Aplicación
+    * Abre la aplicación en tu navegador aquí.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+    * Haz clic en el botón "Importar Archivo CSV" para seleccionar y cargar un archivo CSV desde tu dispositivo.
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+    * Una vez que el archivo se carga con éxito, verás los datos en una tabla o visualización.
 
-## Customize configuration
+    * Explora y analiza los datos según tus necesidades.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+    * Si deseas enviar los datos a un endpoint de la API, busca la opción o el botón correspondiente en la parte inferior de la aplicación.
 
-## Project Setup
+    * Haz clic en "Enviar datos" para enviar los datos al endpoint de la API.
 
-```sh
-npm install
-```
+    * Espera la confirmación de la respuesta de la API y verifica el estado de la operación.
 
-### Compile and Hot-Reload for Development
+Endpoint de la API
+La aplicación se conecta a un endpoint de la API proporcionado en la siguiente URL: https://8j5baasof2.execute-api.us-west-2.amazonaws.com/production/tests/trucode/items. Asegúrate de tener una conexión a Internet activa para utilizar esta función.
 
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+Tecnologías Utilizadas
+Vue.js: El framework JavaScript utilizado para construir la aplicación.
+HTML y CSS: Utilizados para la estructura y el estilo de la interfaz de usuario.
+Vercel: La plataforma de implementación utilizada para alojar la aplicación en un entorno de producción.

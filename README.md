@@ -1,8 +1,12 @@
 APLICACIÓN VUE PARA VISUALIZAR U ENVIAR ARCHIVOS CSV
-    Esta es una aplicación Vue.js que te permite importar archivos CSV, visualizar los datos y luego enviarlos a un endpoint de una API. La aplicación proporciona una interfaz intuitiva para cargar archivos, explorar los datos y realizar     acciones en ellos.
 
-Demo en Vivo
-    Puedes ver una demostración en vivo de la aplicación aquí: https://reto-phi.vercel.app/.
+
+Esta es una aplicación Vue.js que te permite importar archivos CSV, visualizar los datos y luego enviarlos a un endpoint de una API. La aplicación proporciona una interfaz intuitiva para cargar archivos, explorar los datos y realizar     acciones en ellos.
+
+DEMO EN VIVO
+
+
+Puedes ver una demostración en vivo de la aplicación aquí: https://reto-phi.vercel.app/.
 
 Funcionalidades Principales
     

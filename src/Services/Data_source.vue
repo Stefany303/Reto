@@ -1,61 +1,83 @@
 <template>
-    <div>
-      <input type="file" @change="handleFileUpload" accept=".csv" />
-      <div v-if="jsonData">
-        <h2>JSON Result:</h2>
-        <pre>{{ jsonData }}</pre>
+  <div >
+      <div class="css_table bg-gray-100 p-4 md:p-8 rounded-lg shadow-md ">
+      <h1 class="text-center text-2xl font-semibold mb-8 border-b-2 pb-4">Fuente de datos</h1>
+      
+      <input type="file" @change="handleFileUpload" accept=".csv" class="hidden" id="fileInput" />
+
+      <div class="flex justify-center items-center border-dashed border-2 border-gray-300 p-6 rounded-lg mb-4 h-80">
+        <label for="fileInput" class="cursor-pointer">
+          <img src="../assets/enviar.png" alt="Icono" class="mx-auto " />
+          <p class="mt-2 text-gray-600" v-if="!selectedFileName">Seleccionar archivo CSV</p>
+    <p v-if="selectedFileName" class="mt-2 text-gray-600">{{ selectedFileName }}</p>
+        </label>
       </div>
-      <div>
-        <button @click="postDataToAPI(jsonData)">Enviar datos al endpoint</button>
-        <!-- Aquí puedes mostrar un mensaje de éxito o error después de enviar los datos -->
-        <p>{{ postDataMessage }}</p>
-      </div>
+
     </div>
-  </template>
-  
-  <script setup lang="ts">
-  import { ref } from 'vue';
-  import Papa from 'papaparse';
-  
-  const jsonData = ref([]);
-  const postDataMessage = ref('');
-  
-  const handleFileUpload = (event: Event) => {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-  
-    if (file) {
-      Papa.parse(file, {
-        header: false,
-        dynamicTyping: true,
-        complete(results) {
-          // Asigna manualmente los nombres de columna y aplica formatPhoneNumbers
+    
+    <div v-if="jsonData" class="mt-4">
+      <Tablevi :jsonData="jsonData"></Tablevi>
+    </div>
+    <div class="mt-4 flex justify-center py-8 px-8">
+        <button @click="postDataToAPI(jsonData)" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 relative">
+          <span :class="{'loading-button': isLoading}" v-if="isLoading"></span>
+          <span class="z-10" v-if="isLoading">Enviando datos...</span>
+          <span v-else>Enviar datos</span>
+        </button>
+    </div>
+    <p class="mt-2 text-center">{{ postDataMessage }}</p>
+
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import * as Papa from 'papaparse';
+import Tablevi from '../components/Tablevi.vue';
+
+
+
+const jsonData = ref([]);
+const postDataMessage = ref('');
+const selectedFileName = ref('');
+const isLoading = ref(false);
+
+
+const handleFileUpload = (event) => {
+  const input = event.target;
+  const file = input.files?.[0];
+
+  if (file) {
+    selectedFileName.value = file.name; 
+    Papa.parse(file, {
+      header: false,
+      dynamicTyping: true,
+      complete(results) {
+        // Asigna manualmente los nombres de columna y aplica formatPhoneNumbers
         const formattedData = results.data.map((item) => ({
-          name: item[0],    // Asigna el primer valor como "name"
-          phone: item[1],   // Asigna el segundo valor como "phone"
-          email: item[2],   // Asigna el tercer valor como "email"
+          name: item[0],    
+          phone: item[1],   
+          email: item[2],   
         }));
 
-        // Aplica formatPhoneNumbers al resultado
         const formattedAndCleanedData = formatPhoneNumbers(formattedData);
         jsonData.value = formattedAndCleanedData;
         },
-        error(error) {
-          console.error('Error parsing CSV:', error.message);
-        },
-      });
-    }
-  };
-  const formatPhoneNumbers = (data) => {
+      error(error) {
+        console.error('Error parsing CSV:', error.message);
+      },
+    });
+  }
+};
+
+const formatPhoneNumbers = (data) => {
   return data
     .filter((item) => item.phone) // Filtrar solo los elementos con número de teléfono
     .map((item) => {
       let phoneNumber = item.phone.toString();
 
-      // Calcular cuántos ceros se deben agregar al principio para completar 10 dígitos
       const zerosToAdd = Math.max(0, 10 - phoneNumber.length);
 
-      // Agregar ceros al principio solo si es necesario y formatear con guiones
       const formattedPhoneNumber =
         
         phoneNumber.substring(0, 3) +
@@ -84,11 +106,11 @@ const postDataToAPI = async (data) => {
       postDataMessage.value = 'No hay datos para enviar al endpoint';
       return;
     }
-
+    isLoading.value = true;
     const sendRequest = async (itemIndex) => {
       if (itemIndex >= data.length) {
-        // Todas las solicitudes han sido enviadas
         postDataMessage.value = 'Datos CSV enviados con éxito al endpoint';
+        isLoading.value = false;
         return;
       }
 
@@ -113,9 +135,7 @@ const postDataToAPI = async (data) => {
         await sendRequest(itemIndex + 1);
       } catch (error) {
         console.error('Error al enviar un objeto al endpoint:', error);
-        // Puedes manejar errores individuales aquí si es necesario
 
-        // Envía la siguiente solicitud recursivamente incluso si hay errores
         await sendRequest(itemIndex + 1);
       }
     };
@@ -125,6 +145,7 @@ const postDataToAPI = async (data) => {
   } catch (error) {
     console.error('Error al enviar datos CSV al endpoint:', error);
     postDataMessage.value = 'Error al enviar datos CSV al endpoint. Por favor, inténtalo de nuevo.';
+    isLoading.value = false;
   }
 };
 

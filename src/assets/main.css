@@ -1,37 +1,71 @@
+@import './base.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './base.css';
 
 #app {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 2rem;
 
   font-weight: bold ;
 }
+.css_table{
+  width: 70%;
+  height: 35rem;
+  margin: auto;
+  margin-top: 4%;
+}
 
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: #043e85;
   transition: 0.4s;
   text-align: center;
 }
-
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(0, 0%, 100%, 0.2);
-  }
+table {
+  width: 100%;
 }
+.table-container {
+  max-height: 400px; 
+  overflow-y: auto;
+ 
+}
+.loading-button {
+  position: relative;
+  color: #fff; /* Color de texto del botón */
+  padding: 12px 24px; /* Espaciado del botón */
+  border-radius: 6px; /* Borde redondeado */
+}
+
+.loading-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px; /* Ancho del icono de carga */
+  height: 20px; /* Alto del icono de carga */
+  border: 2px solid #fff; /* Estilo del icono de carga */
+  border-top: 2px solid transparent; /* Parte superior transparente del icono de carga */
+  border-radius: 50%; /* Borde redondeado para formar un círculo */
+  animation: spin 1s linear infinite; /* Animación de giro del icono de carga */
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
 
 @media (min-width: 1024px) {
   #app {
-    display: flex; 
+   
     place-items: center;
     padding: 1 2rem;
   }
-
+  
 }
 

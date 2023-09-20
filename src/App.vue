@@ -1,19 +1,25 @@
 <script setup lang="ts">
-import Data_source from './components/Data_source.vue';
 import HelloWorld from './components/HelloWorld.vue';
-import ApiResults from './Services/connect.vue';
 </script>
 
 <template>
   <div id="app">
-    <header>
-
+   
     <div class="wrapper">
-      <HelloWorld msg="Bienvenidos!" />
-      <Data_source></Data_source>
-      <ApiResults></ApiResults>
+      <header>
+
+<HelloWorld msg="Lista de contactos!" />
+</header>
+<nav class="text-center mt-8 text-2xl">
+        <RouterLink to="/" class="mx-8">Datos</RouterLink>
+        
+        <RouterLink to="/resultado">Resultados</RouterLink>
+      </nav>
+      <RouterView></RouterView>
+
+      
     </div>
-    </header>
+    
   </div>
  
 </template>

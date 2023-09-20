@@ -1,3 +1,3 @@
 module.exports={
-    publicPath:"/Reto"
+    publicPath:"/Reto/"
 }
